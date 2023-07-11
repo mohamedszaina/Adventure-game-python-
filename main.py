@@ -2,83 +2,83 @@ import time
 import random
 
 
-def print_pause(msg_to_print):
+def print_delay(msg_to_print):
     print(msg_to_print)
     time.sleep(2)
 
 
-def intro(option):
-    print_pause("You find yourself standing in an open field, filled "
+def introduction(choice):
+    print_delay("You find yourself standing in an open field, filled "
                 "with grass and yellow wildflowers.")
-    print_pause(f"Rumor has it that a {option} is somewhere around "
+    print_delay(f"Rumor has it that a {choice} is somewhere around "
                 "here and has been terrifying the nearby village.")
-    print_pause("In front of you is a house.")
-    print_pause("To your right is a dark cave.")
-    print_pause("In your hand, you hold your trusty (but not very "
+    print_delay("In front of you is a house.")
+    print_delay("To your right is a dark cave.")
+    print_delay("In your hand, you hold your trusty (but not very "
                 "effective) dagger.")
 
 
-def cave(item, option):
-    if "sword" in item:
-        print_pause("You peer cautiously into the cave.")
-        print_pause("You've been here before, and you've collected all "
+def cave(object, choice):
+    if "sword" in object:
+        print_delay("You peer cautiously into the cave.")
+        print_delay("You've been here before, and you've collected all "
                     "the good stuff. It's just an empty cave now.")
     else:
-        print_pause("You peer cautiously into the cave.")
-        print_pause("It turns out to be only a very small cave.")
-        print_pause("Your eye catches a glint of metal behind a rock.")
-        print_pause("You have found the magical Sword of Ogoroth!")
-        print_pause("You discard your silly old dagger and take "
+        print_delay("You peer cautiously into the cave.")
+        print_delay("It turns out to be only a very small cave.")
+        print_delay("Your eye catches a glint of metal behind a rock.")
+        print_delay("You have found the magical Sword of Ogoroth!")
+        print_delay("You discard your silly old dagger and take "
                     "the sword with you.")
-        item.append("sword")
-    print_pause("You walk back out to the field.")
-    field(item, option)
+        object.append("sword")
+    print_delay("You walk back out to the field.")
+    field(object, choice)
 
 
-def house(item, option):
-    print_pause("You approach the door of the house.")
-    print_pause(
-        f"You are about to knock when the door opens and out steps a {option}.")
-    print_pause(f"Eep! This is the {option}'s house!")
-    print_pause(f"The {option} attacks you!")
-    if "sword" not in item:
-        print_pause("You feel a bit under-prepared for this, "
+def house(object, choice):
+    print_delay("You approach the door of the house.")
+    print_delay(
+        f"You are about to knock when the door opens and out steps a {choice}.")
+    print_delay(f"Eep! This is the {choice}'s house!")
+    print_delay(f"The {choice} attacks you!")
+    if "sword" not in object:
+        print_delay("You feel a bit under-prepared for this, "
                     "what with only having a tiny dagger.")
     while True:
         choice2 = input("Would you like to (1) fight or (2) run away?")
         if choice2 == "1":
-            if "sword" in item:
-                print_pause(
-                    f"As the {option} moves to attack, you unsheath your new sword.")
-                print_pause("The Sword of Ogoroth shines brightly in "
+            if "sword" in object:
+                print_delay(
+                    f"As the {choice} moves to attack, you unsheath your new sword.")
+                print_delay("The Sword of Ogoroth shines brightly in "
                             "your hand as you brace yourself for the attack.")
-                print_pause(f"But the {option} takes one look at "
+                print_delay(f"But the {choice} takes one look at "
                             "your shiny new toy and runs away!")
-                print_pause(
-                    f"You have rid the town of the {option}. You are victorious!")
+                print_delay(
+                    f"You have rid the town of the {choice}. You are victorious!")
             else:
-                print_pause("You do your best...")
-                print_pause(f"but your dagger is no match for the {option}.")
-                print_pause("You have been defeated!")
+                print_delay("You do your best...")
+                print_delay(f"but your dagger is no match for the {choice}.")
+                print_delay("You have been defeated!")
             play_again()
             break
         elif choice2 == "2":
-            print_pause(
+            print_delay(
                 "You run back into the field. Luckily, you don't seem to have been followed.")
-            field(item, option)
+            field(object, choice)
             break
 
 
-def field(item, option):
-    print_pause("Enter 1 to knock on the door of the house.")
-    print_pause("Enter 2 to peer into the cave.")
+def field(object, choice):
+    print_delay("Enter 1 to knock on the door of the house.")
+    print_delay("Enter 2 to peer into the cave.")
     while True:
         choice1 = input("(Please enter 1 or 2.)")
         if choice1 == "1":
-            house(item, option)
+            house(object, choice)
             break
         elif choice1 == "2":
-            cave(item, option)
+            cave(object, choice)
             break
 
 
@@ -86,20 +86,20 @@ def play_again():
     while True:
         again = input("Would you like to play again? (y/n)").lower()
         if again == "y":
-            print_pause("\n\n\nExcellent! Restarting the game ...\n\n\n")
+            print_delay("\n\n\nExcellent! Restarting the game ...\n\n\n")
             play_game()
             break
         elif again == "n":
-            print_pause("\n\n\nThanks for playing! See you next time.\n\n\n")
+            print_delay("\n\n\nThanks for playing! See you next time.\n\n\n")
             break
 
 
 def play_game():
-    item = []
-    options = ["wicked fairie", "pirate", "dragon", "troll", "gorgon"]
-    option = random.choice(options)
-    intro(item, option)
-    field(item, option)
+    object = []
+    choices = ["wicked fairie", "pirate", "dragon", "troll", "gorgon"]
+    choice = random.choice(choices)
+    introduction(object, choice)
+    field(object, choice)
 
 
 play_game()
